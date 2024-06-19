@@ -4,7 +4,6 @@
  */
 package perpustakaan;
 
-import java.util.Date;
 
 /**
  *
@@ -13,10 +12,10 @@ import java.util.Date;
 public class kembali extends denda{
     
     int no_trans_kembali, no_trans_pinjam,  no_anggota,  no_buku;
-    Date tgl_kembali;
+    String tgl_kembali;
     
     public kembali () {}
-    public kembali(int no_trans_kembali, int no_trans_pinjam, int no_anggota, int no_buku, Date tgl_kembali){
+    public kembali(int no_trans_kembali, int no_trans_pinjam, int no_anggota, int no_buku, String tgl_kembali){
         this.no_trans_kembali = no_trans_kembali;
         this.no_trans_pinjam = no_trans_pinjam;
         this.no_anggota = no_anggota;
@@ -56,10 +55,10 @@ public class kembali extends denda{
         return no_buku;
     }
 
-    public void inputTglKembali(Date tgl_kembali) {
+    public void inputTglKembali(String tgl_kembali) {
         this.tgl_kembali = tgl_kembali;
     }
-    public Date ambilTglKembali() {
+    public String ambilTglKembali() {
         return tgl_kembali;
     }
 }

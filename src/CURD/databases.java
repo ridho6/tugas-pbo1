@@ -8,7 +8,7 @@ import java.sql.DriverManager; //menghubungkan database
 import java.sql.PreparedStatement; // perintah sql (CURD)
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
+
 
 /**
  *
@@ -132,7 +132,7 @@ public class databases {
     }
             public void hapusANGGOTA(String no_anggota){
             try {
-                String sql = "delete from pinjam where no_anggota = ?";
+                String sql = "delete from anggota where no_anggota = ?";
                 PreparedStatement perintah = connectionDB.prepareStatement(sql);
                 perintah.setString(1, no_anggota);
                 perintah.executeUpdate();
@@ -244,7 +244,7 @@ public class databases {
             }
              
             /*KEMBALI*/
-            public void simpanKEMBALI(int no_trans_kembali, int no_trans_pinjam, int no_anggota, int no_buku, Date tgl_kembali){
+            public void simpanKEMBALI(int no_trans_kembali, int no_trans_pinjam, int no_anggota, int no_buku, String tgl_kembali){
             try {
                 String sql = "insert into kembali (no_trans_kembali, no_trans_pinjam, no_anggota, no_buku, tgl_kembali) value (?, ?, ?, ?, ?)";
                 PreparedStatement perintah = connectionDB.prepareStatement(sql);
@@ -252,21 +252,21 @@ public class databases {
                 perintah.setInt(2, no_trans_pinjam);
                 perintah.setInt(3, no_anggota);
                 perintah.setInt(4, no_buku);
-                perintah.setDate(5, new java.sql.Date(tgl_kembali.getTime()));
+                perintah.setString(5,tgl_kembali);
                 perintah.executeUpdate();
                 System.out.println("data berhasil disimpan");
             } catch (Exception e) {
                 System.out.println(e.getMessage());  
             }
     }
-            public void ubahKEMBALI(int no_trans_kembali, int no_trans_pinjam, int no_anggota, int no_buku, Date tgl_kembali){
+            public void ubahKEMBALI(int no_trans_kembali, int no_trans_pinjam, int no_anggota, int no_buku, String tgl_kembali){
             try {
                 String sql = "update kembali set no_trans_pinjam=?, no_anggota=?, no_buku=?, tgl_kembali=? where no_trans_kembali = ?";
                 PreparedStatement perintah = connectionDB.prepareStatement(sql);
                 perintah.setInt(1, no_trans_pinjam);
                 perintah.setInt(2, no_anggota);
                 perintah.setInt(3, no_buku);
-                perintah.setDate(4, new java.sql.Date(tgl_kembali.getTime()));
+                perintah.setString(4, tgl_kembali);
                 perintah.setInt(5, no_trans_kembali);
                 perintah.executeUpdate();
                 System.out.println("data berhasil diubah");
